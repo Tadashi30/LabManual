@@ -1,0 +1,24 @@
+#include<DHT.h>
+#define DHTPIN 9 //The data pin of DHT11/DHT22  should be connected to the dihital pin 9 of Arduino. #define DHTTYPE DHT22
+DHT dht (DHTPIN, DHTTYPE);
+void setup()
+{
+Serial.begin(9600);dht.begin();  
+}
+
+void loop() 
+{
+float humidity = dht.readHumidity();
+float Temperature = dht.readTemperature(); if (isnan(Temperature)||isnan(humidity))  
+
+{
+Serial.println ("Sensor is not available right now");
+}
+else
+{
+  Serial.print("Temperature is "); Serial.print(Temperature);
+  Serial.println("*C");
+  Serial.print("Humidity in % is :"); Serial.print(humidity);
+  Serial.print("%\t");
+}
+}
